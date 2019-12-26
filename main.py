@@ -7,7 +7,7 @@ link_horizon = 'https://store.playstation.com/ru-ru/product/EP9000-CUSA01021_00-
 link_gta5 = 'https://store.playstation.com/ru-ru/product/EP1004-CUSA00411_00-PREMIUMPACKOG001'
 BASE_URL = 'https://api.telegram.org/'
 
-TOKEN = '1004532298:AAFwzcBZZ3ReQfpWNWcfEJYEp2uQD-WLj80'
+TOKEN = os.environ.get(TOKEN)
 message = ''
 
 
