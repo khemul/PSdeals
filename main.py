@@ -1,12 +1,33 @@
+#!/usr/bin/env python3
 import requests
 from bs4 import BeautifulSoup
 
-link = 'https://store.playstation.com/ru-ru/product/EP9000-CUSA01021_00-HRZ000000000DLC1'
 
-r = requests.get(link)
+link_horizon = 'https://store.playstation.com/ru-ru/product/EP9000-CUSA01021_00-HRZ000000000DLC1'
+link_gta5 = 'https://store.playstation.com/ru-ru/product/EP1004-CUSA00411_00-PREMIUMPACKOG001'
+BASE_URL = 'https://api.telegram.org/'
 
+TOKEN = '1004532298:AAFwzcBZZ3ReQfpWNWcfEJYEp2uQD-WLj80'
+message = ''
+
+
+def send_message(message):
+
+    req = requests.get(f'{BASE_URL}{TOKEN}/')
+
+
+r = requests.get(link_horizon)
 b = BeautifulSoup(r.text, 'html.parser')
-price = b.select('.price-display__price')
-print(price[0].text)
 
-#<h3 class="price-display__price">RUB&nbsp;1.069</h3>select
+price1 = b.select('.price-display__price')
+price2 = b.select('.price')
+
+if not price2:
+    message = 'NOT DISCOUNT\nPrice: {0}'.format(price1[0].text)
+
+else:
+    message = 'DISCOUNT!\nOld price is: {0}.\n Discount price is: {1}'.format(price2[0].text, price1[0].text)
+
+
+if __name__ == '__main__':
+    send_message(message)
