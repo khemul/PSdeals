@@ -8,13 +8,13 @@ link_horizon = 'https://store.playstation.com/ru-ru/product/EP9000-CUSA01021_00-
 link_gta5 = 'https://store.playstation.com/ru-ru/product/EP1004-CUSA00411_00-PREMIUMPACKOG001'
 BASE_URL = 'https://api.telegram.org/'
 
-TOKEN = os.environ.get('TOKEN')
+TK = os.environ.get('TOKEN')
 message = ''
 
 
 def send_message(message):
 
-    req = requests.get(f'{BASE_URL}{TOKEN}/')
+    req = requests.get(f'{BASE_URL}{TK}/')
 
 
 r = requests.get(link_horizon)
